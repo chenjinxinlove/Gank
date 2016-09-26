@@ -1,0 +1,40 @@
+{
+    "pages":[
+      "pages/index/index",
+      "pages/add/add",
+      "pages/about/about"
+    ],
+    "window":{
+     "navigationBarBackgroundColor": "#292929",
+     "navigationBarTextStyle": "white",
+      "navigationBarTitleText": "干货集中营",
+      "enablePullDownRefresh": true
+    },
+    "tabBar":{
+      "color": "#103a64",
+      "selectedColor" : "#000",
+      "background" : "#ccc",
+      "borderStyle" : "black",
+      "list":[{
+        "pagePath" : "pages/index/index",
+        "text" : "Gank",
+        "iconPath" : "img/high.ico",
+        "selectedIconPath" : "img/high.ico"
+      },{
+        "pagePath" : "pages/add/add",
+        "text" : "add",
+        "iconPath" : "img/high.ico",
+        "selectedIconPath" : "img/high.ico"
+      },{
+        "pagePath" : "pages/about/about",
+        "text" : "about",
+        "iconPath" : "img/high.ico",
+        "selectedIconPath" : "img/high.ico"
+      }]
+    },
+    "networkTimeout": {
+    "request": 10000,
+    "downloadFile": 10000
+    },
+    "debug": true
+}
