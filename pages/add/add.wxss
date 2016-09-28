@@ -1,0 +1,39 @@
+.urlClass , .whoClass{
+    border: 1px solid red !important;
+}
+
+.add-main {
+    height: 80%;
+    width: 90%;
+    padding: 1rem;
+}
+.add-option {
+    height: 3rem;
+    width: 16rem;
+}
+.add-option input{
+    border: 1px solid skyblue;
+    border-radius: 2px;
+    
+}
+.add-option  label {
+    float: left;
+    display: block;
+    width: 3rem;
+}
+.add-desc input{
+    border: 1px solid skyblue;
+    border-radius: 2px;
+    height: 5rem;
+    width: 13rem;
+    margin-bottom: 1rem;
+}
+.add-desc label {
+    float: left;
+    display: block;
+    width: 3rem;
+}
+.btn-area {
+    width: 100%;
+    height: 1rem;
+}

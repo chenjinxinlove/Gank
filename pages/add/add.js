@@ -1,20 +1,37 @@
 Page({
   data:{
-    text:"add"
+    urlClass : " ",
+    whoClass : " ",
   },
   onLoad:function(options){
     // 页面初始化 options为页面跳转所带来的参数
   },
-  onReady:function(){
-    // 页面渲染完成
+  // 验证是否为http
+  verifyHtpp : function (event){
+      var value = event.detail.value;
+      var regex = /(http|ftp|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&amp;:/~\+#]*[\w\-\@?^=%&amp;/~\+#])?/;
+      if(!regex.test(value)){
+         this.setData({
+            "urlClass" : "urlClass"
+          })
+        
+      }else{
+         this.setData({
+            "urlClass" : " "
+          }) 
+      }
   },
-  onShow:function(){
-    // 页面显示
-  },
-  onHide:function(){
-    // 页面隐藏
-  },
-  onUnload:function(){
-    // 页面关闭
+  // 验证不能为空
+  verifyNotK : function(event){
+    var value = event.detail.value;
+    if(value.length === 0){
+       this.setData({
+            "whoClass" : "whoClass"
+          })
+    }else{
+       this.setData({
+            "whoClass" : " "
+          }) 
+    }
   }
 })

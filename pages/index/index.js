@@ -8,6 +8,7 @@ Page({
     GankDatas:[],
     loadingHidden : false,
     modalHidden : true,
+    bodyHeight : 0
   },
   onLoad:function(options){
     reda(this, '福利')
@@ -16,13 +17,42 @@ Page({
     // 页面渲染完成
   },
   onShow:function(){
-    // 页面显示
+    var _self = this;
+    wx.getSystemInfo({
+      success : function(res){
+        _self.setData({
+          "bodyHeight" : res.windowHeight
+        })
+      }
+    })
   },
   onHide:function(){
     // 页面隐藏
   },
   onUnload:function(){
     // 页面关闭
+  },
+  // 上拉刷新
+  upOnload : function(e){
+    this.setData({
+      "loadingHidden":false
+    });
+    var _self = this;
+    setTimeout(function(){  
+      _self.onLoad();
+    },500)
+    
+  },
+  // 下拉加载
+  downOnload : function(e){
+    this.setData({
+        "loadingHidden":false
+      });
+      var oldData = this.data.GankDatas;
+      var _self = this;
+      setTimeout(function(){  
+        redaDown(_self, '福利',oldData)
+      },500)
   },
   //弹出菜单
   popupMenuShow : function(){
@@ -55,7 +85,7 @@ Page({
       url: IMGSRC,
       type: 'image',
       success: function(res) {
-        console.log(res.tempFilePath)
+        // console.log(res.tempFilePath)
       }
     })
     
@@ -63,13 +93,29 @@ Page({
 
 });
 
-function reda(_self, type){
+function reda(_self, type,callback){
   RequestData.init({
       "value" : type,
       "page" : appInstance.globalPage
     },function(data){
         _self.setData({
           "GankDatas" : data,
+          "loadingHidden" : true
+        });
+        appInstance.globalPage++;
+    });
+}
+function redaDown(_self, type,oldData){
+  RequestData.init({
+      "value" : type,
+      "page" : appInstance.globalPage
+    },function(data){
+      if(oldData.lenght >= 500){
+        oldData = oldData.slice(-1,-500);
+      }
+      var newData = oldData.concat(data);
+        _self.setData({
+          "GankDatas" : newData,
           "loadingHidden" : true
         });
         appInstance.globalPage++;

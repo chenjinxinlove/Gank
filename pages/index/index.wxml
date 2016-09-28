@@ -1,4 +1,4 @@
-<!--<view class="body-view" bindtouchmove="targetHeight">-->
+<scroll-view class="body-view" scroll-y="true" bindscrolltoupper="upOnload" bindscrolltolower="downOnload" lower-threshold="20" style="height: {{bodyHeight}}px;">
     <loading hidden="{{loadingHidden}}" bindchange="loadingChange">
         加载中...
     </loading>
@@ -23,5 +23,4 @@
                 <view class="havePublishedAt">{{item.publishedAt}}</view>   
             </view> 
     </view><!--gank-content-->
-<!--</view>-->
-<!--body-view-->
+</scroll-view><!--body-view-->
