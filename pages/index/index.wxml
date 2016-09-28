@@ -1,1 +1,27 @@
-<view>index</view>
+<!--<view class="body-view" bindtouchmove="targetHeight">-->
+    <loading hidden="{{loadingHidden}}" bindchange="loadingChange">
+        加载中...
+    </loading>
+    <modal title="保存福利" confirm-text="保存" cancel-text="取消" hidden="{{modalHidden}}" bindconfirm="modalconfirm" bindcancel="modalChange">
+        <image src="{{modalImgSrc}}" class="modalImg" mode="aspectFill"></image>
+    </modal>
+    <view class="gank-header">
+        <view class="gank-menu" bindtap="popupMenuShow">
+            <image src="http://objheplwd.bkt.clouddn.com/menu.png" class="menu-icon" ></image>
+        </view>
+        <view class="gank-seach">
+            <input type="text" placeholder="搜索" placeholderStyle="color:#ccc;font-size:15px;"/>
+        </view>
+        <icon class="seach-icon" type="search" color="#ccc" size="18"/>
+    </view>
+    <view class="heightem"></view>
+    <view class="popup-menu" wx:if="{{popupShowData}}"></view>
+        <view wx:for="{{GankDatas}}"class="gank-content">
+            <view class="haveImg" bindtap="onSavePic" data-imgSrc="{{item.url}}">
+                <image class="haveImage" src="{{item.url}}" mode="aspectFill"   ></image>
+                <view class="haveDesc">{{item.desc}}</view>
+                <view class="havePublishedAt">{{item.publishedAt}}</view>   
+            </view> 
+    </view><!--gank-content-->
+<!--</view>-->
+<!--body-view-->
