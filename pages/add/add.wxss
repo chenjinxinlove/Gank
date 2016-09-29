@@ -1,4 +1,4 @@
-.urlClass , .whoClass{
+.urlClass , .whoClass , .typeClass, .descClass{
     border: 1px solid red !important;
 }
 
@@ -6,6 +6,7 @@
     height: 80%;
     width: 90%;
     padding: 1rem;
+    font-size: 0.5rem;
 }
 .add-option {
     height: 3rem;

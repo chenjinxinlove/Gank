@@ -1,35 +1,37 @@
+<action-sheet  bindchange="actionSheetChange" hidden="{{actionType}}">
+        <block wx:for="{{actionSheetItems}}">
+            <action-sheet-item class="item" bindtap="bindItemTap" data-name="{{item}}">{{item}}</action-sheet-item>
+        </block>
+        <action-sheet-cancel class="cancel">取消</action-sheet-cancel>
+</action-sheet>
+<view class="body-view">
+  <toast hidden="{{toast1Hidden}}" duration="1000" bindchange="hiddenToast">
+    {{callbackDesc}}
+  </toast>
+</view>
 <view class="add-main">
 <form bindsubmit="formSubmit" bindreset="formReset" >
     <view class="add-option">
         <label for="addUrl">url:</label>
-        <input type="text" class="{{urlClass}}" placeholder="想要提交的网页地址" bindinput="verifyHtpp" id="addUrl" placeholder-style="color:#103a64;font-size:0.5rem" />
+        <input type="text" class="{{urlClass}}" placeholder="想要提交的网页地址" bindinput="verifyHtpp" name="url" id="addUrl" placeholder-style="color:#103a64;font-size:0.5rem" />
     </view>
     <view class="add-option">
          <label for="addWho">who:</label>
-         <input type="text" class="{{whoClass}}" bindinput="verifyNotK" placeholder="提交者 ID" id="addWho" placeholder-style="color:#103a64;font-size:0.5rem"/>
+         <input type="text" class="{{whoClass}}" bindinput="verifyNotK" placeholder="提交者 ID" name="who" id="addWho" placeholder-style="color:#103a64;font-size:0.5rem"/>
     </view>
     <view class="add-option">
         <label for="addType">type:</label>
-        <input type="text" placeholder="干货类型" id="addType" placeholder-style="color:#103a64;font-size:0.5rem"/>
+        <input type="text" class="{{typeClass}}" bindfocus="addType" value="{{addTypeData}}" disabled="{{addTypeDis}}" placeholder="干货类型" name="type" id="addType" placeholder-style="color:#103a64;font-size:0.5rem"/>  
     </view>
     <view class="add-desc">
         <label for="addDesc">desc:</label>
-        <input type="text" placeholder="对干货内容的描述" id="addDesc"placeholder-style="color:#103a64;font-size:0.5rem" />
+        <input type="text"  class="{{descClass}}" bindinput="verifyNotD" placeholder="对干货内容的描述" name="desc" id="addDesc" placeholder-style="color:#103a64;font-size:0.5rem" />
     </view>
-    <view class="add-option" id="addDebug">
-        <label for="addDebug">debug:</label>
-        <switch checked bindchange="switch1Change"/>
-    </view> 
     <view class="btn-area">
         <button formType="submit">提交</button>
         <button formType="reset">取消</button>
     </view>
 </form>
+   
 </view>
 
-  <action-sheet hidden="true" bindchange="actionSheetChange">
-  <block wx:for="{{actionSheetItems}}">
-    <action-sheet-item class="item" bindtap="bindItemTap" data-name="{{item}}">{{item}}</action-sheet-item>
-  </block>
-  <action-sheet-cancel class="cancel">取消</action-sheet-cancel>
-</action-sheet>
