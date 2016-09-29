@@ -1,3 +1,20 @@
+<view class="popup-menu" wx:if="{{popupShowData}}">
+   <view  bindtap="bindViewTap" class="userinfo">
+      <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+  </view>
+  <view class="menu-option">
+        <view>All </view>
+        <view>Android </view>
+        <view> iOS  </view>
+        <view>休息视频 </view>
+        <view>福利 </view>
+        <view>拓展资源 </view>
+        <view>前端 </view>
+        <view>瞎推荐 </view>
+        <view>App </view>
+  </view>
+</view>
 <scroll-view class="body-view" scroll-y="true" bindscrolltoupper="upOnload" bindscrolltolower="downOnload" lower-threshold="20" style="height: {{bodyHeight}}px;">
     <loading hidden="{{loadingHidden}}" bindchange="loadingChange">
         加载中...
@@ -15,7 +32,6 @@
         <icon class="seach-icon" type="search" color="#ccc" size="18"/>
     </view>
     <view class="heightem"></view>
-    <view class="popup-menu" wx:if="{{popupShowData}}"></view>
         <view wx:for="{{GankDatas}}"class="gank-content">
             <view class="haveImg" bindtap="onSavePic" data-imgSrc="{{item.url}}">
                 <image class="haveImage" src="{{item.url}}" mode="aspectFill"   ></image>

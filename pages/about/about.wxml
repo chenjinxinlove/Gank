@@ -1,7 +1,8 @@
-<button type="default" bindtap="actionSheetTap">弹出action sheet</button>
-<action-sheet hidden="{{actionSheetHidden}}" bindchange="actionSheetChange">
-  <block wx:for="{{actionSheetItems}}">
-    <action-sheet-item class="item" bindtap="bindItemTap" data-name="{{item}}">{{item}}</action-sheet-item>
-  </block>
-  <action-sheet-cancel class="cancel">取消</action-sheet-cancel>
-</action-sheet>
+<view >
+
+  <image src="../../img/logo.png" class="about-logo"></image>
+  <text class="about-text">
+    感谢http://gank.io/提供的api
+    githut:https://github.com/chenjinxinlove/Gank
+  </text>
+</view>
