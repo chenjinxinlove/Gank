@@ -4,15 +4,15 @@
       <text class="userinfo-nickname">{{userInfo.nickName}}</text>
   </view>
   <view class="menu-option">
-        <view>All </view>
-        <view>Android </view>
-        <view> iOS  </view>
-        <view>休息视频 </view>
-        <view>福利 </view>
-        <view>拓展资源 </view>
-        <view>前端 </view>
-        <view>瞎推荐 </view>
-        <view>App </view>
+        <view bindtap="chuang" data-name="all">All</view>
+        <view bindtap="chuang" data-name="Android">Android</view>
+        <view bindtap="chuang" data-name="iOS">iOS</view>
+        <view bindtap="chuang" data-name="休息视频">休息视频</view>
+        <view bindtap="chuang" data-name="福利">福利</view>
+        <view bindtap="chuang" data-name="拓展资源">拓展资源</view>
+        <view bindtap="chuang" data-name="前端">前端</view>
+        <view bindtap="chuang" data-name="瞎推荐">瞎推荐</view>
+        <view bindtap="chuang" data-name="App">App</view>
   </view>
 </view>
 <scroll-view class="body-view" scroll-y="true" bindscrolltoupper="upOnload" bindscrolltolower="downOnload" lower-threshold="20" style="height: {{bodyHeight}}px;">
@@ -27,16 +27,24 @@
             <image src="http://objheplwd.bkt.clouddn.com/menu.png" class="menu-icon" ></image>
         </view>
         <view class="gank-seach">
-            <input type="text" placeholder="搜索" placeholderStyle="color:#ccc;font-size:15px;"/>
+            <input type="text" placeholder="搜索" placeholderStyle="color:#ccc;font-size:15px;" bindinput="getSearch"/>
         </view>
-        <icon class="seach-icon" type="search" color="#ccc" size="18"/>
+        <icon class="seach-icon" type="search" color="#ccc" size="18" bindtap="search"/>
     </view>
     <view class="heightem"></view>
-        <view wx:for="{{GankDatas}}"class="gank-content">
+    <view wx:for="{{GankDatas}}" class="gank-content">
+        <view wx:if="{{item.type == 'img'}}">
             <view class="haveImg" bindtap="onSavePic" data-imgSrc="{{item.url}}">
                 <image class="haveImage" src="{{item.url}}" mode="aspectFill"   ></image>
                 <view class="haveDesc">{{item.desc}}</view>
                 <view class="havePublishedAt">{{item.publishedAt}}</view>   
             </view> 
+        </view>
+        <view wx:else>
+            <view class="gank-html" data-src="{{item.url}}" bindtap="details">
+                <view class="haveDesc">{{item.desc}}</view>
+                <view class="havePublishedAt">{{item.publishedAt}}</view>   
+            </view> 
+        </view>      
     </view><!--gank-content-->
 </scroll-view><!--body-view-->

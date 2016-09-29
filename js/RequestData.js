@@ -5,7 +5,7 @@ var jonit = {
         return encodeURI(rootUrl + "data/" + options.value + "/" + options.num + '/' + options.page);
     },
     "search" : function (options){
-        return encodeURI(rootUrl + "search/query/" + options.value + "/category/Android/count/"+ options.num +"/page/"+options.page); 
+        return encodeURI(rootUrl + "search/query/" + options.value + "/category/all/count/"+ options.num +"/page/"+options.page); 
     }
 }
 
@@ -42,10 +42,18 @@ RequestData.prototype._handleData = function(data, callback){
     data.forEach(function(value, index, arr){
         var d = {};
         d.desc = value.desc;
-        d.url = value['url'].replace("//ww", "//ws");
+        if(/\.jpg?$/.test(value['url'])){
+            d.type = 'img'
+            d.url = value['url'].replace("//ww", "//ws");
+        }else{
+            d.type = 'other';
+            d.url = value['url'];
+        }
+        
         d.publishedAt = value['publishedAt'].split("T")[0];
         callData.push(d);
     })
+    // console.table(callData)
     callback(callData);
 }
 

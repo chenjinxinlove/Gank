@@ -9,10 +9,11 @@ Page({
     loadingHidden : false,
     modalHidden : true,
     bodyHeight : 0,
-    userInfo: {}
+    userInfo: {},
+    SearchData: " "
   },
   onLoad:function(options){
-    reda(this, '福利');
+    reda(this,appInstance.globalType, appInstance.globalName);
     var that = this
     //调用应用实例的方法获取全局数据
     appInstance.getUserInfo(function(userInfo){
@@ -60,7 +61,7 @@ Page({
       var oldData = this.data.GankDatas;
       var _self = this;
       setTimeout(function(){  
-        redaDown(_self, '福利',oldData)
+        redaDown(_self,appInstance.globalType ,appInstance.globalName,oldData)
       },500)
   },
   //弹出菜单
@@ -98,13 +99,48 @@ Page({
       }
     })
     
+  },
+  // 点击不同的选项
+  chuang : function(event){
+        appInstance.globalName = event.currentTarget.dataset.name;
+        appInstance.globalPage = 1;
+        this.setData({
+          "popupShowData":false,
+        })
+        reda(this,'common', event.currentTarget.dataset.name);
+  },
+  //搜索
+  getSearch :function(event){
+    this.setData({
+      SearchData : event.detail.value
+    })
+  },
+  search :function(){
+    appInstance.globalType = 'search',
+    appInstance.globalPage =1;
+    var data = this.data.SearchData;
+    this.setData({
+         "loadingHidden":false,
+        })
+    if(trim(data)> 0){
+        reda(this,'search',data)
+    }
+  },
+  // 详情
+  details:function(event){
+     var url = event.currentTarget.dataset.src;
+     console.log(url);
+     wx.navigateTo({
+       url:url
+     })
   }
 
 });
 
-function reda(_self, type,callback){
+function reda(_self, type,value){
   RequestData.init({
-      "value" : type,
+      "value" : value,
+      "type" : type,
       "page" : appInstance.globalPage
     },function(data){
         _self.setData({
@@ -114,9 +150,10 @@ function reda(_self, type,callback){
         appInstance.globalPage++;
     });
 }
-function redaDown(_self, type,oldData){
+function redaDown(_self,type,value, oldData){
   RequestData.init({
-      "value" : type,
+      "value" : value,
+      "type" : type,
       "page" : appInstance.globalPage
     },function(data){
       if(oldData.lenght >= 500){
@@ -129,4 +166,7 @@ function redaDown(_self, type,oldData){
         });
         appInstance.globalPage++;
     });
+}
+function trim(str) {
+    return str.replace(/^(\s*)|(\s*)$/g,"");
 }

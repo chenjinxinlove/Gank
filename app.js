@@ -37,5 +37,7 @@ App({
     globalData:{
         userInfo:null
     },
-    globalPage:1
+    globalPage:1,
+    globalName:'福利',
+    globalType:'common'
 })
